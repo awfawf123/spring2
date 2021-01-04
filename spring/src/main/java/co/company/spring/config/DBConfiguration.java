@@ -5,8 +5,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+@EnableTransactionManagement
 @ComponentScan(basePackages="co.company")
 public class DBConfiguration {
 	//데이터소스 등록
@@ -26,6 +29,10 @@ public class DBConfiguration {
 	public JdbcTemplate db(BasicDataSource source) {
 		JdbcTemplate db = new JdbcTemplate(source);
 		return db;
+	}
+	@Bean
+	public DataSourceTransactionManager transactionManager() {
+		return new DataSourceTransactionManager(dataSource());
 	}
 
 }

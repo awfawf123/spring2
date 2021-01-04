@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
 	public List<Map> getUserListMap(UserVO vo) {
 		return userDAO.getUserListMap(vo);
 	}
+	//@Transactional
 	public int insertUser(UserVO dto) {		
 		return userDAO.insertUser(dto);		
 	}
