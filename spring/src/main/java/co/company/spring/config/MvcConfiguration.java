@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import co.company.spring.common.AuthCheckInterceptor;
@@ -63,6 +64,13 @@ public class MvcConfiguration implements WebMvcConfigurer {
 		CommonsMultipartResolver multi = new CommonsMultipartResolver();
 		multi.setMaxUploadSize(1024*10000);
 		return multi;
+	}
+	
+	@Bean
+	BeanNameViewResolver beanNameViewResolver() { //엑셀 view
+		BeanNameViewResolver bean = new BeanNameViewResolver();
+		bean.setOrder(1);
+		return bean;
 	}
 	
 	@Bean
