@@ -39,8 +39,7 @@ public class UserController {
 	@PostMapping("/userInsert")
 	public String userInsert(HttpServletRequest request, UserVO user) throws IllegalStateException, IOException {
 		//request multipart로 캐스팅
-		MultipartHttpServletRequest multipartRequest =
-				(MultipartHttpServletRequest)request;
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
 				//이미지파일
 				MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 				if(! multipartFile.isEmpty() && multipartFile.getSize()>0) {
