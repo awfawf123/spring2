@@ -29,10 +29,20 @@ public class PdfView extends AbstractView {
 			HttpServletResponse response) throws Exception {
 		Connection conn = datasource.getConnection();
 		String reportFile = (String) model.get("filename");
+		//if filename == jasper,jrxml
+		//jasper
 		HashMap<String, Object> map = (HashMap<String, Object>) model.get("param");
 		InputStream jasperStream = getClass().getResourceAsStream(reportFile);
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn);
 		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+		
+		//jrxml
+		//소스파일 컴파일하여 저장 : compileReportToFile
+/*		 String jrxmlFile = getClass().getResource("/empmaster.jrxml").getFile();
+		jasperFile = JasperCompileManager.compileReportToFile( jrxmlFile );
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile, null, conn);
+		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+		*/
 	}
 }
